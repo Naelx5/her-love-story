@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform, type MotionValue } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import confetti from "canvas-confetti";
 
@@ -145,8 +145,8 @@ function Hero({
   fade,
 }: {
   days: number;
-  y: ReturnType<typeof useTransform>;
-  fade: ReturnType<typeof useTransform>;
+  y: MotionValue<number>;
+  fade: MotionValue<number>;
 }) {
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center px-6 text-center">
