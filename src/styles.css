@@ -164,3 +164,57 @@
     color: var(--color-foreground);
   }
 }
+
+@utility glass {
+  background: color-mix(in oklab, var(--navy) 55%, transparent);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid color-mix(in oklab, var(--gold) 26%, transparent);
+  box-shadow: var(--shadow-glow);
+}
+
+@utility gold-text {
+  background: linear-gradient(
+    100deg,
+    color-mix(in oklab, var(--gold) 70%, white),
+    var(--gold),
+    color-mix(in oklab, var(--wine) 55%, var(--gold))
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+@utility lift {
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease;
+  &:hover {
+    transform: translateY(-8px) rotate(-0.4deg);
+    box-shadow: 0 32px 80px -34px color-mix(in oklab, var(--gold) 60%, transparent);
+  }
+}
+
+@keyframes drift {
+  0% { transform: translate3d(0,0,0) rotate(0deg); }
+  50% { transform: translate3d(0,-22px,0) rotate(6deg); }
+  100% { transform: translate3d(0,0,0) rotate(0deg); }
+}
+
+@keyframes flicker {
+  0%, 100% { transform: scaleY(1) translateX(0); opacity: 1; }
+  50% { transform: scaleY(1.12) translateX(1px); opacity: 0.86; }
+}
+
+@utility float-slow {
+  animation: drift 9s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
